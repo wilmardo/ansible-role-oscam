@@ -1,0 +1,6 @@
+{% for section, parent_dict in item.conf.items() %}
+[{{ section }}]
+    {% for key, value in parent_dict.items() %}
+    {{ key }} = {{ value }}
+    {% endfor %}
+{% endfor %}

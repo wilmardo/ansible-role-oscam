@@ -1,0 +1,2 @@
+---
+oscam_conf_location: "/etc/{{ oscam_version }}/"

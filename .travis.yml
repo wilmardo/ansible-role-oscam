@@ -1,0 +1,42 @@
+---
+dist: trusty
+language: python
+sudo: required
+cache:
+  pip: true
+
+env:
+  global:
+    - fast_finish: true
+
+matrix:
+  include:
+    - env: TAG=2.4  # 2.4.x security
+    - env: TAG=2.5  # 2.4.x bugs and security
+    - env: TAG=2.6  # 2.6.x bugs and security
+    - env: TAG=devel  # Devel branch source install
+
+services:
+  - docker
+
+addons:
+  apt:
+    sources:
+      - docker-trusty
+    packages:
+      - docker-ce
+
+before_script:
+  - sudo service docker stop
+  - sudo dockerd -H unix:///var/run/docker.sock -H tcp://127.0.0.1:2375 </dev/null &>/dev/null &
+
+script:
+  - |
+    docker run --net=host -it -v $(pwd):/data/$(basename ~+) \
+    -w /data/$(basename ~+) \
+    lansible/ansible-dev-container:$TAG molecule --debug test
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email:
+    on_failure: change
+    on_success: never

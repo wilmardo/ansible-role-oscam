@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-role-oscam
+
+  post_tasks:
+    - name: Wait for OSCam to succesfully restart
+      wait_for:
+        port: "{{ oscam_conf.webif.httpport }}"
+
+    - name: Test OSCam webinterface
+      uri:
+        url: "http://{{ oscam_conf.webif.user }}{{ oscam_conf.webif.password }}{{ inventory_hostname }}:{{ oscam_conf.webif.httpport }}"

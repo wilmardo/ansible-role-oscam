@@ -1,0 +1,27 @@
+---
+galaxy_info:
+  role_name: oscam
+  author: Wilmar den Ouden
+  description: |
+    Role to install OSCam
+
+  license: BSD-3-Clause-Clear
+
+  min_ansible_version: 2.3
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+        - jessie
+    - name: Ubuntu
+      versions:
+        - xenial
+        - trusty
+
+  galaxy_tags:
+    - oscam
+    - softcam
+    - tvheadend
+
+  dependencies: []

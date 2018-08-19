@@ -1,0 +1,5 @@
+---
+- name: restart oscam
+  service:
+    name: "{{ oscam_version }}"
+    state: restarted

@@ -1,0 +1,19 @@
+---
+- name: Setup OSCam repository
+  apt_repository:
+    repo: ppa:oscam/ppa
+
+- name: "Install {{ oscam_version }}"
+  apt:
+    name: "{{ oscam_version }}"
+    state: present
+
+- name: Setup configuration
+  template:
+    src: oscam-conf.j2
+    dest: "{{ oscam_conf_location }}/{{ item.name }}"
+  with_items:
+    - { name: 'oscam.conf', conf: "{{ oscam_conf }}" }
+    - { name: 'oscam.server', conf: "{{ oscam_server }}" }
+    - { name: 'oscam.user', conf: "{{ oscam_user }}" }
+  notify: restart oscam
