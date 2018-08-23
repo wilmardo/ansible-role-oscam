@@ -1,7 +1,8 @@
-# wilmardo.ansible-role-oscam
+# wilmardo.oscam 
 
-[![Build Status](https://travis-ci.org/wilmardo/ansible-role-oscam.svg?branch=master)](https://travis-ci.org/wilmardo/ansible-role-oscam)
-[![Galaxy](https://img.shields.io/badge/galaxy-wilmardo.ansible-role-oscam-blue.svg)](https://galaxy.ansible.com/wilmardo/ansible-role-oscam/)
+[![Ansible Role](https://img.shields.io/ansible/role/29105.svg?style=flat-square)](https://galaxy.ansible.com/wilmardo/oscam)
+[![Travis (.org)](https://img.shields.io/travis/wilmardo/ansible-role-oscam.svg?style=flat-square)](https://travis-ci.org/wilmardo/ansible-role-oscam)
+[![Ansible Role](https://img.shields.io/ansible/role/d/29105.svg?style=flat-square)](https://galaxy.ansible.com/wilmardo/oscam)
 
 Role to install the OSCam softcam.
 
