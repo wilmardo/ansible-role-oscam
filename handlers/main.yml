@@ -3,3 +3,10 @@
   service:
     name: "{{ oscam_version }}"
     state: restarted
+  register: oscam_restarted
+
+- name: reload oscam
+  service:
+    name: "{{ oscam_version }}"
+    state: reloaded
+  when: oscam_restarted is not defined

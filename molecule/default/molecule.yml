@@ -5,7 +5,7 @@ dependency:
     role-file: requirements.yml
 
 driver:
-  name: docker
+  name: lxd
 
 lint:
   name: yamllint
@@ -13,9 +13,20 @@ lint:
     config-file: ${DEV_MOLECULE_RULES}/yaml-lint.yml
 
 platforms:
+  - name: OSCam-Debian9
+    alias: debian/stretch/amd64
+
+  - name: OSCam-Debian8
+    alias: debian/jessie/amd64
+
+  - name: OSCam-Ubuntu1804
+    alias: ubuntu/bionic/amd64
+
   - name: OSCam-Ubuntu1604
-    image: lansible/ubuntu:16.04
-    pre_build_image: true
+    alias: ubuntu/xenial/amd64
+
+  - name: OSCam-Ubuntu1404
+    alias: ubuntu/trusty/amd64
 
 provisioner:
   name: ansible
@@ -26,6 +37,13 @@ provisioner:
     name: ansible-lint
     options:
       c: ${DEV_MOLECULE_RULES}/ansible-lint.yml
+
+verifier:
+  name: goss
+  lint:
+    name: yamllint
+    options:
+      config-file: ${DEV_MOLECULE_RULES}/yaml-lint.yml
 
 scenario:
   name: default

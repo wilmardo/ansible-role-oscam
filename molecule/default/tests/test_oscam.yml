@@ -1,0 +1,9 @@
+---
+service:
+  oscam-svn:
+    enabled: true
+    running: true
+
+port:
+  tcp:25001:
+    listening: true

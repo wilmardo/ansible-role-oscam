@@ -7,6 +7,7 @@
   apt:
     name: "{{ oscam_version }}"
     state: present
+  notify: restart oscam
 
 - name: Setup configuration
   template:
@@ -16,4 +17,9 @@
     - { name: 'oscam.conf', conf: "{{ oscam_conf }}" }
     - { name: 'oscam.server', conf: "{{ oscam_server }}" }
     - { name: 'oscam.user', conf: "{{ oscam_user }}" }
-  notify: restart oscam
+  notify: reload oscam
+
+- name: "Enable {{ oscam_version }} to start on boot"
+  service:
+    name: "{{ oscam_version }}"
+    enabled: true
