@@ -13,18 +13,6 @@ lint:
     config-file: ${DEV_MOLECULE_RULES}/yaml-lint.yml
 
 platforms:
-  - name: OSCam-Debian9
-    source:
-      alias: debian/stretch/amd64
-
-  - name: OSCam-Debian8
-    source:
-      alias: debian/jessie/amd64
-
-  - name: OSCam-Ubuntu1804
-    source:
-      alias: ubuntu/bionic/amd64
-
   - name: OSCam-Ubuntu1604
     source:
       alias: ubuntu/xenial/amd64
