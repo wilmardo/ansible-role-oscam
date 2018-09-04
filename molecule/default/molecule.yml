@@ -14,19 +14,24 @@ lint:
 
 platforms:
   - name: OSCam-Debian9
-    alias: debian/stretch/amd64
+    source:
+      alias: debian/stretch/amd64
 
   - name: OSCam-Debian8
-    alias: debian/jessie/amd64
+    source:
+      alias: debian/jessie/amd64
 
   - name: OSCam-Ubuntu1804
-    alias: ubuntu/bionic/amd64
+    source:
+      alias: ubuntu/bionic/amd64
 
   - name: OSCam-Ubuntu1604
-    alias: ubuntu/xenial/amd64
+    source:
+      alias: ubuntu/xenial/amd64
 
   - name: OSCam-Ubuntu1404
-    alias: ubuntu/trusty/amd64
+    source:
+      alias: ubuntu/trusty/amd64
 
 provisioner:
   name: ansible
