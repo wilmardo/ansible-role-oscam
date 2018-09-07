@@ -37,8 +37,38 @@ install:
   - sudo lxd init --auto
 
 script:
+  - whoami
+  - id
+  - getent group
   - |
-    sudo docker run -it -v $(pwd):/data/$(basename ~+) \
+    docker run -it -v $(pwd):/data/$(basename ~+) \
+    -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
+    -w /data/$(basename ~+) \
+    -e LOCAL_USER_ID=`id -u $USER` \
+    -e LOCAL_GROUP_ID=`getent group lxd | cut -d: -f3` \
+    lansible/ansible-dev-container:$TAG whoami
+  - |
+    docker run -it -v $(pwd):/data/$(basename ~+) \
+    -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
+    -w /data/$(basename ~+) \
+    -e LOCAL_USER_ID=`id -u $USER` \
+    -e LOCAL_GROUP_ID=`getent group lxd | cut -d: -f3` \
+    lansible/ansible-dev-container:$TAG id
+  - |
+    docker run -it -v $(pwd):/data/$(basename ~+) \
+    -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
+    -w /data/$(basename ~+) \
+    -e LOCAL_USER_ID=`id -u $USER` \
+    -e LOCAL_GROUP_ID=`getent group lxd | cut -d: -f3` \
+    lansible/ansible-dev-container:$TAG getent group
+  - |
+    docker run -it -v $(pwd):/data/$(basename ~+) \
+    -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
+    -w /data/$(basename ~+) \
+    --entrypoint '' --user root \
+    lansible/ansible-dev-container:2.4 ls -lah /var/lib/lxd/unix.socket
+  - |
+    docker run -it -v $(pwd):/data/$(basename ~+) \
     -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
     -w /data/$(basename ~+) \
     -e LOCAL_USER_ID=`id -u $USER` \
