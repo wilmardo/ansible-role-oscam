@@ -37,6 +37,11 @@ install:
   - sudo lxd init --auto
 
 script:
+  - whoami
+  - sudo whoami
+  - id
+  - sudo id
+  - getent group
   - |
     docker run -it -v $(pwd):/data/$(basename ~+) \
     -v /var/snap/lxd/common/lxd/unix.socket:/var/lib/lxd/unix.socket \
